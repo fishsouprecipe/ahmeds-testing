@@ -7,9 +7,7 @@
 
 ## Installation
 ```bash
-git clone https://github.com/fishsouprecipe/ahmeds-testing.git
-       && python3 -m pip install ahmeds-testing
-       && plawright install chromium
+git clone https://github.com/fishsouprecipe/ahmeds-testing.git && python3 -m pip install ahmeds-testing && plawright install chromium
 ```
 
 ## Commands

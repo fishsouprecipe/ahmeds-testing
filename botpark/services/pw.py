@@ -9,7 +9,7 @@ from playwright.async_api._context_manager import PlaywrightContextManager
 from playwright.async_api._context_manager import AsyncPlaywright
 
 
-MAX_PAGES = 12
+MAX_PAGES = 3
 
 sem = asyncio.Semaphore(MAX_PAGES)
 lock = asyncio.Lock()

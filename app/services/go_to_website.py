@@ -57,10 +57,18 @@ class GoToWebsiteBase(Base, abc.ABC):
 
                     if checks > 9:
                         if reloaded:
+                            print(f'Clouldflare detected, {url} skipped')
+
                             break
 
                         else:
                             await page.reload()
+
+                            print(
+                                'Clouldflare detected, '
+                                f'attemt to reaload {url}'
+                            )
+
                             checks = 0
                             reloaded = True
 

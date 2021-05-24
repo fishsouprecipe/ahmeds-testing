@@ -1,13 +1,25 @@
-# Future Billionaire 💎🙌
+# Botpark
 
 ## Pre-requirements
-- python3.7+
+- python3.7 with setuptools and pip
+- playwright with chromium installed
 - git
-
+- curl
 
 ## Installation
+
+### One line
 ```bash
-git clone https://github.com/fishsouprecipe/ahmeds-testing.git && python3 -m pip install ahmeds-testing && plawright install chromium
+curl https://raw.githubusercontent.com/fishsouprecipe/ahmeds-testing/primary/install.cfg | sh
+```
+
+
+### Manual
+```bash
+git clone https://github.com/fishsouprecipe/ahmeds-testing.git \
+    && python3 -m pip install playwright \
+    && playwright install chromium \
+    && python3 -m pip install ./ahmeds-testing
 ```
 
 ## Commands
@@ -27,5 +39,3 @@ botpark list
 ```bash
 botpark run
 ```
-
-ps Hodl dogecoins

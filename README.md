@@ -10,7 +10,7 @@
 
 ### One line
 ```bash
-curl https://raw.githubusercontent.com/fishsouprecipe/ahmeds-testing/primary/install.cfg | sh
+curl https://raw.githubusercontent.com/fishsouprecipe/ahmeds-testing/primary/install.sh | sh
 ```
 
 

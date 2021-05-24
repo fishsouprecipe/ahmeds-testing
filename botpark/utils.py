@@ -9,8 +9,6 @@ from typing import Dict
 from typing import NamedTuple
 from pathlib import Path
 
-import aiofiles
-
 if TYPE_CHECKING:
     from telethon.tl.types import Message
 
@@ -21,10 +19,8 @@ StatesDict = Dict[str, State]
 
 async def load_states(states_file: Path) -> StatesDict:
     try:
-        async with aiofiles.open(states_file) as f:
-            content: str = await f.read()
-
-            return json.loads(content)
+        with open(states_file) as f:
+            return json.load(f)
 
 
     except FileNotFoundError:
@@ -32,10 +28,8 @@ async def load_states(states_file: Path) -> StatesDict:
 
 
 async def dump_states(states: StatesDict, states_file: Path) -> None:
-    async with aiofiles.open(states_file, 'w') as f:
-        content: str = json.dumps(states, indent=2)
-
-        await f.write(content)
+    with open(states_file, 'w') as f:
+        json.dump(states, f, indent=2)
 
 
 async def random_sleep(min: float, max: float) -> None:

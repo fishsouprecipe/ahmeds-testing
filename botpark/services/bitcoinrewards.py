@@ -10,7 +10,13 @@ class BitcoinRewards(Base):
     __bot_username__: str = '@BitcoinRewardsBot'
 
     async def run(self) -> None:
-        await self.start_command()
+        try:
+            await self.start_command()
+
+        except Exception as e:
+            print(e)
+            return
+
         await utils.random_sleep(3, 4)
 
         async for message in self.client.iter_messages(

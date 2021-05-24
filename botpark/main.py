@@ -1,4 +1,5 @@
 import asyncio
+import contextlib
 import argparse
 from typing import Sequence
 from typing import Optional
@@ -8,6 +9,7 @@ from botpark import defaults
 from botpark import utils
 from botpark.commands import add_command
 from botpark.commands import list_command
+from botpark.commands import remove_command
 from botpark.commands import run_command
 from botpark.commands import help_command
 
@@ -30,6 +32,9 @@ async def amain(argv: Optional[Sequence[str]] = None) -> None:
     list_parser = subparsers.add_parser('list')
     list_parser.set_defaults(func=list_command)
 
+    remove_parser = subparsers.add_parser('remove')
+    remove_parser.set_defaults(func=remove_command)
+
     args: argparse.Namespace = parser.parse_args(argv)
 
     states: utils.StatesDict = await utils.load_states(args.states_file)
@@ -42,4 +47,7 @@ async def amain(argv: Optional[Sequence[str]] = None) -> None:
 
 
 def main() -> None:
-    asyncio.run(amain())
+    with contextlib.suppress(Exception):
+        asyncio.run(amain())
+
+    print('\rGoodbye')

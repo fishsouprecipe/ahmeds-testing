@@ -11,6 +11,7 @@ class BitcoinRewards(Base):
 
     async def run(self) -> None:
         await self.start_command()
+        await utils.random_sleep(3, 4)
 
         async for message in self.client.iter_messages(
                 self.__bot_username__, limit=5):

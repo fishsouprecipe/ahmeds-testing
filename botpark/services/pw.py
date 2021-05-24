@@ -9,9 +9,9 @@ from playwright.async_api._context_manager import PlaywrightContextManager
 from playwright.async_api._context_manager import AsyncPlaywright
 
 
-MAX_PAGES = 10
+MAX_PAGES = 12
 
-sem = asyncio.Semaphore(10)
+sem = asyncio.Semaphore(MAX_PAGES)
 lock = asyncio.Lock()
 pw: Optional[AsyncPlaywright] = None
 pw_manager: Optional[PlaywrightContextManager] = None
@@ -43,7 +43,7 @@ async def init():
             pw = await pw_manager.__aenter__()
 
         if browser is None:
-            browser = await pw.chromium.launch()
+            browser = await pw.chromium.launch(headless=True)
 
 
 async def stop():

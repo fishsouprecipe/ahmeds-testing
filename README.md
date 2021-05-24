@@ -4,29 +4,30 @@
 - python3.7+
 - git
 
+
 ## Installation
 ```bash
-$ git clone https://github.com/fishsouprecipe/ahmeds-testing.git
-
-# Pass your github credentials
-
-$ cd ahmeds-testing
-$ python3 -m venv venv
-$ . venv/bin/activate
-(venv) $ python3 -m pip install -r requirements.txt
-(venv) $ playwright install chromium
+$ git clone https://github.com/fishsouprecipe/ahmeds-testing.git \
+       python3 -m pip install ahmeds-testing \
+       plawright install chromium
 ```
 
-## Add your telegram accounts
+## Commands
+### Adding telegram accounts
 ```bash
-(venv) $ python3 -m app add
+$ botpark add
 
 # Pass your telegram credentials
 ```
 
-## Run
+### Listing telegram accounts
 ```bash
-(venv) $ python3 -m app run
+$ botpark list
+```
+
+### Run
+```bash
+$ botpark run
 ```
 
 ps Hodl dogecoins

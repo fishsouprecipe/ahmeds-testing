@@ -6,16 +6,35 @@ from typing import List
 from telethon import TelegramClient
 from telethon.sessions import StringSession
 
-from app import utils
-from app import config
-from app.services import Base
-from app.services import pw
-from app.services import all_services
+from botpark import utils
+from botpark import config
+from botpark.services import Base
+from botpark.services import pw
+from botpark.services import all_services
 
 RE = re.compile(r'^\+\d+$')
 MESSAGE = '''Add phone number in format
 +yyyxxxxxxxx (not fixed width)
 '''
+
+async def help_command(_: utils.StatesDict) -> None:
+    print("""\
+                botpark v 0.1
+
+botpark add - adds telegram account to sessions list
+botpark list - lists all telegram account numbers
+botpark run - run
+"""
+)
+
+
+async def list_command(states: utils.StatesDict) -> None:
+    message = "All sessions\n\n{}".format(",\n".join(
+        map(lambda s: f'    {s}', states))
+    )
+
+    print(message)
+
 
 async def add_command(states: utils.StatesDict) -> None:
     while True:
@@ -62,6 +81,8 @@ async def _run_client(phone_number: str, client: TelegramClient) -> None:
                 services.append(service)
 
             while True:
+                print(phone_number, 'woking..')
+
                 await asyncio.sleep(3600)
 
         finally:
@@ -101,3 +122,4 @@ async def run_command(states: utils.StatesDict) -> None:
     finally:
         await pw.stop()
         print('Done')
+

@@ -3,7 +3,7 @@ import asyncio
 
 from .base import Base
 
-from app import utils
+from botpark import utils
 
 
 class BitcoinRewards(Base):

@@ -1,13 +1,11 @@
 import abc
 import contextlib
-import asyncio
 
-from app import utils
+from botpark import utils
 
 from .base import Base
 
 from .pw import get_page
-
 
 JS_TO_EVALUATE = """
 (function() {
@@ -18,6 +16,7 @@ JS_TO_EVALUATE = """
     }
 })()
 """
+
 
 class GoToWebsiteBase(Base, abc.ABC):
     async def run(self) -> None:

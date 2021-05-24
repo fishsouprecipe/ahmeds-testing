@@ -10,6 +10,12 @@ class Base(abc.ABC):
     client: TelegramClient
     task: Optional[asyncio.Task]
 
+    @property
+    @classmethod
+    @abc.abstractmethod
+    def __bot_username__(cls) -> str:
+        ...
+
     def __init__(self, client: TelegramClient) -> None:
         self.client = client
         self.task = None
@@ -23,6 +29,12 @@ class Base(abc.ABC):
     @abc.abstractmethod
     async def run(self) -> None:
         pass
+
+    async def send_message(self, message: str) -> None:
+        await self.client.send_message(self.__bot_username__, message)
+
+    async def start_command(self) -> None:
+        await self.send_message('/start')
 
     def stop(self) -> None:
         if self.task is None:

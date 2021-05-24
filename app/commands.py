@@ -9,6 +9,7 @@ from telethon.sessions import StringSession
 from app import utils
 from app import config
 from app.services import Base
+from app.services import pw
 from app.services import all_services
 
 RE = re.compile(r'^\+\d+$')
@@ -90,6 +91,7 @@ async def run_command(states: utils.StatesDict) -> None:
 
         clients[phone_number] = client
 
+    await pw.init()
     try:
         await asyncio.wait([
             asyncio.create_task(_run_client(phone_number, client))
@@ -97,4 +99,5 @@ async def run_command(states: utils.StatesDict) -> None:
         ])
 
     finally:
+        await pw.stop()
         print('Done')

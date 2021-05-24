@@ -43,7 +43,7 @@ async def init():
             pw = await pw_manager.__aenter__()
 
         if browser is None:
-            browser = await pw.firefox.launch(headless=True)
+            browser = await pw.chromium.launch()
 
 
 async def stop():

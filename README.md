@@ -11,20 +11,22 @@ $ git clone https://github.com/fishsouprecipe/ahmeds-testing.git
 # Pass your github credentials
 
 $ cd ahmeds-testing
-$ python3 -m pip install -r requirements.txt
-$ playwright install firefox
+$ python3 -m venv venv
+$ . venv/bin/activate
+(venv) $ python3 -m pip install -r requirements.txt
+(venv) $ playwright install chromium
 ```
 
 ## Add your telegram accounts
 ```bash
-$ python3 -m app add
+(venv) $ python3 -m app add
 
 # Pass your telegram credentials
 ```
 
 ## Run
 ```bash
-$ python3 -m app run
+(venv) $ python3 -m app run
 ```
 
 ps Hodl dogecoins

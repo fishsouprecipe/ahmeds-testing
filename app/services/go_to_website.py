@@ -12,7 +12,7 @@ from .pw import get_page
 JS_TO_EVALUATE = """
 (function() {
     try {
-        return document.URL;
+        return window.location.href;
     } catch (e) {
         return 'https://doge.click/';
     }
@@ -42,17 +42,27 @@ class GoToWebsiteBase(Base, abc.ABC):
 
             async with get_page() as page:
                 await page.goto(button.url)
+                await utils.random_sleep(1, 3)
 
+                checks = 0
+                reloaded = False
                 while True:
                     url = await page.evaluate(JS_TO_EVALUATE)
 
-                    if '://doge.click' in url:
-                        await asyncio.sleep(1)
-
-                    else:
+                    if '://doge.click' not in url:
                         break
 
-            await asyncio.sleep(10)
+                    await utils.random_sleep(1, 3)
+                    checks += 1
+
+                    if checks > 9:
+                        if reloaded:
+                            break
+
+                        else:
+                            await page.reload()
+                            checks = 0
+                            reloaded = True
 
 
 class LitecoinClick(GoToWebsiteBase):
